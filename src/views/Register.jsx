@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
 import { register, reset } from "../features/auth/authSlice";
-import { isFulfilled } from "@reduxjs/toolkit";
+// import { isFulfilled } from "@reduxjs/toolkit";
 
-const Register = () => {
+function Register() {
+  // const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -111,6 +112,6 @@ const Register = () => {
       </section>
     </>
   );
-};
+}
 
 export default Register;
