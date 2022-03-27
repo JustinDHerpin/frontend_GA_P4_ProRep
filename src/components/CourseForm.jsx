@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { login, reset } from "../features/auth/authSlice";
+import { createCourse, reset } from "../features/courses/coursesSlice";
 
 function CourseForm() {
   // const [name, setName] = useState("");
@@ -16,28 +16,31 @@ function CourseForm() {
 
   const { name, students, owner } = formData;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
+  const { user } = useSelector((state) => state.auth);
+
+  const { courses, isError, isSuccess, message } = useSelector(
+    (state) => state.courses
   );
 
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
+  // useEffect(() => {
+  //   if (isError) {
+  //     toast.error(message);
+  //   }
 
-    if (isSuccess || user) {
-      navigate("/dashboard");
-    }
+  //   if (isSuccess || user) {
+  //     navigate("/dashboard");
+  //   }
 
-    dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
+  //   dispatch(reset());
+  // }, [user, courses, isError, isSuccess, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
+      owner: user,
       [e.target.name]: e.target.value,
     }));
   };
@@ -45,13 +48,18 @@ function CourseForm() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const userData = {
+    const courseData = {
       name,
       students,
       owner,
     };
 
-    dispatch(login(userData));
+    dispatch(createCourse(courseData));
+    setFormData({
+      name: "",
+      students: [],
+      owner: "",
+    });
   };
 
   return (
@@ -65,8 +73,12 @@ function CourseForm() {
               name="name"
               id="name"
               value={name}
-              onChange={(e) => setFormData.name(e.target.value)}
+              onChange={onChange}
             ></input>
+          </div>
+
+          <div>
+            <button type="submit">Add Course</button>
           </div>
         </form>
       </section>
