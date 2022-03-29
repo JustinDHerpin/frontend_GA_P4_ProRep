@@ -21,7 +21,10 @@ function Dashboard() {
         <h1>Welcome {user && user.name}</h1>
         <p>Course Dashboard</p>
 
-        <CourseForm />
+        {/* <div> */}
+        {user.isAdmin && <CourseForm />}
+        {/* {user.isAdmin ? {<CourseForm />} : null} */}
+        {/* </div> */}
       </section>
     </>
   );

@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { FaSignInAlt } from "react-icons/fa";
+import { Form } from "react-bootstrap";
+import { FaRemoveFormat, FaSignInAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../features/auth/authSlice";
+// import Form from "react-bootstrap-Form";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -65,7 +67,8 @@ const Login = () => {
 
       <section>
         <form onSubmit={onSubmit}>
-          <input
+          {/* <input */}
+          <Form.Control
             type="email"
             id="email"
             name="email"
@@ -74,7 +77,8 @@ const Login = () => {
             onChange={onChange}
           />
 
-          <input
+          {/* <input */}
+          <Form.Control
             type="password"
             id="password"
             name="password"
@@ -83,7 +87,9 @@ const Login = () => {
             onChange={onChange}
           />
 
-          <button type="submit">Submit</button>
+          <button variant="primary" type="submit">
+            Submit
+          </button>
         </form>
       </section>
     </>
