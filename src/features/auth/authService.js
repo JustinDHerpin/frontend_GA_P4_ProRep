@@ -1,7 +1,15 @@
 // Make http request, send data back, setting data in localStorage
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/v1/users/";
+// const API_URL = "http://localhost:5000/api/v1/users/";
+// ----------------------working on deployment issues w url refused below -------
+
+const API_URL =
+  process.env.REACT_APP_ENV === "production"
+    ? "https://prorep-backend.herokuapp.com/"
+    : "http://localhost:5000/api/v1/users/";
+
+// -------------------------------------end-------------------
 
 // Register user
 const register = async (userData) => {
