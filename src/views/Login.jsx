@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../features/auth/authSlice";
-// import Form from "react-bootstrap-Form";
+import Button from "react-bootstrap/Button";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -87,6 +87,7 @@ const Login = () => {
             onChange={onChange}
           />
 
+          <Button>Submit</Button>
           <button variant="primary" type="submit">
             Submit
           </button>

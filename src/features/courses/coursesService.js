@@ -16,7 +16,7 @@ const createCourse = async (courseData, token) => {
 };
 
 // Get User's Courses
-const getCourses = async (token) => {
+const getUserCourses = async (token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -29,21 +29,22 @@ const getCourses = async (token) => {
 };
 
 // Get all Courses available to user:
-// const getAllCourses = async (token) => {
-//   const config = {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   };
+const getAllCourses = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-//   const response = await axios.get(API_URL, config);
+  const response = await axios.get(API_URL + "all", config);
 
-//   return response.data;
-// }
+  return response.data;
+};
 
 const coursesService = {
   createCourse,
-  getCourses,
+  getUserCourses,
+  getAllCourses,
 };
 
 export default coursesService;

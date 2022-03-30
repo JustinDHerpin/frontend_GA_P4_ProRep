@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CourseForm from "../components/CourseForm";
+import coursesService from "../features/courses/coursesService";
+import CoursesList from "../components/CoursesList";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -22,7 +24,9 @@ function Dashboard() {
         <p>Course Dashboard</p>
 
         {/* <div> */}
-        {user.isAdmin && <CourseForm />}
+        {/* {user.isAdmin && <CourseForm />} */}
+        <CourseForm />
+        <CoursesList />
         {/* {user.isAdmin ? {<CourseForm />} : null} */}
         {/* </div> */}
       </section>
