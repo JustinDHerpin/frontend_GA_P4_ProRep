@@ -15,15 +15,24 @@ body {
 
 /* Login/Register forms */
 
+.login-header-container {
+  margin-top: 4rem;
+}
+
+.login-form-container {
+  justify-items: center;
+}
+
 .login-logo {
   width: 85px;
   height: 85px;
   border-radius: 8px;
-  margin: 100px 0;
+  /* margin: 500px 0; */
 }
 
 .form-login {
-  background-color: #0f43716a;
+  margin: 7rem auto;
+  /* background-color: #0f43716a; */
   max-width: 400px;
 }
 

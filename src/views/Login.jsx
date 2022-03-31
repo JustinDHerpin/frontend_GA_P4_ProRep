@@ -62,62 +62,66 @@ const Login = () => {
     <>
       {/* <section> */}
       <Container>
-        <h3>
-          <FaSignInAlt /> Login
-        </h3>
-        <p>
-          Please log in to see your courses, or click "Register" to create a new
-          account.
-        </p>
-      </Container>
-      {/* </section> */}
-
-      {/* <section> */}
-      <Container>
-        {/* <form onSubmit={onSubmit}> */}
-        <Form onSubmit={onSubmit} className="text-center form-login">
-          <img
-            className="login-logo mb-5 mt-5"
-            src={require("../images/proRepSampleWix.jpeg")}
-            alt="ProRep Logo Icon"
-          />
-          {/* <input */}
-          <Form.Control
-            className="mb-3"
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            placeholder="Please enter your email"
-            onChange={onChange}
-          />
-
-          {/* <input */}
-          <Form.Control
-            className="mb-3"
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            placeholder="Please enter a password"
-            onChange={onChange}
-          />
-
-          <Button type="submit" className="mb-3 login-button">
-            Login
-          </Button>
+        <Container className="text-center login-header-container">
+          <h3>
+            <FaSignInAlt /> Login
+          </h3>
           <p>
-            Not Registered? Click the Register button below to create your FREE
-            account.
+            Please log in to see your courses, or click "Register" to create a
+            new account.
           </p>
-          <Button onClick={registerClick} className="mb-3 login-button">
-            Register
-          </Button>
-          {/* <button variant="primary" type="submit">
-            Submit
-          </button> */}
-        </Form>
-        {/* </form> */}
+        </Container>
+        {/* </section> */}
+
+        {/* <section> */}
+        <Container className="h-100 login-form-container">
+          {/* <form onSubmit={onSubmit}> */}
+          <Form onSubmit={onSubmit} className="text-center form-login">
+            <img
+              className="login-logo mb-4 mt-4"
+              src={require("../images/proRepSampleWix.jpeg")}
+              alt="ProRep Logo Icon"
+            />
+            {/* <input */}
+            <Form.Control
+              className="mb-3"
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              placeholder="Please enter your email"
+              onChange={onChange}
+            />
+
+            {/* <input */}
+            <Form.Control
+              className="mb-3"
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              placeholder="Please enter a password"
+              onChange={onChange}
+            />
+            <div className="d-grid">
+              <Button type="submit" className="mb-3 login-button">
+                Login
+              </Button>
+              <p>
+                Not Registered? Click the Register button below to create your
+                FREE account.
+              </p>
+
+              <Button onClick={registerClick} className="mb-3 login-button">
+                Register
+              </Button>
+            </div>
+            {/* <button variant="primary" type="submit">
+              Submit
+            </button> */}
+          </Form>
+          {/* </form> */}
+        </Container>
       </Container>
       {/* </section> */}
     </>

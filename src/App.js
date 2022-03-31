@@ -15,15 +15,15 @@ function App() {
       <Router>
         {/* <div> */}
         <NavBar />
-        <Container className="d-grid h-100 text-center">
-          {/* <Header /> */}
+        {/* <Container className="d-grid h-100 text-center"> */}
+        {/* <Header /> */}
 
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Routes>
-        </Container>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+        {/* </Container> */}
         {/* </div> */}
       </Router>
 
