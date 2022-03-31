@@ -77,7 +77,7 @@ const Login = () => {
         {/* <form onSubmit={onSubmit}> */}
         <Form onSubmit={onSubmit} className="text-center form-login">
           <img
-            className="login-logo mb-3 mt-3"
+            className="login-logo mb-5 mt-5"
             src={require("../images/proRepSampleWix.jpeg")}
             alt="ProRep Logo Icon"
           />
@@ -103,14 +103,14 @@ const Login = () => {
             onChange={onChange}
           />
 
-          <Button type="submit" className="mb-3">
+          <Button type="submit" className="mb-3 login-button">
             Login
           </Button>
           <p>
             Not Registered? Click the Register button below to create your FREE
             account.
           </p>
-          <Button onClick={registerClick} className="mb-3">
+          <Button onClick={registerClick} className="mb-3 login-button">
             Register
           </Button>
           {/* <button variant="primary" type="submit">

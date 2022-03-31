@@ -7,22 +7,40 @@
 }
 
 body {
-  display: grid;
+  /* display: grid; */
   background: #f5f5f5;
   min-height: 100vh;
   /* background: red; */
 }
 
+/* Login/Register forms */
+
 .login-logo {
   width: 85px;
   height: 85px;
   border-radius: 8px;
+  margin: 100px 0;
 }
 
 .form-login {
   background-color: #0f43716a;
   max-width: 400px;
 }
+
+.login-button {
+  background-color: #031C32;
+}
+
+.navImage {
+  margin-right: 8px;
+}
+
+.nav-logout-button {
+  background-color: #031C32;
+  margin-left: 8px;
+}
+
+
 /* ----------------------------------------- Imported from GitHub for initial styling to be changed/modified later ------------ */
 
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
