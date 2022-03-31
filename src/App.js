@@ -6,20 +6,23 @@ import Header from "./components/Header";
 import Dashboard from "./views/Dashboard";
 import Login from "./views/Login";
 import Register from "./views/Register";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
     <>
       <Router>
-        <div>
-          <Header />
+        {/* <div> */}
+        <Container className="d-grid h-100">
+          {/* <Header /> */}
 
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
-        </div>
+        </Container>
+        {/* </div> */}
       </Router>
 
       <ToastContainer />

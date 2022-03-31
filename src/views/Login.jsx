@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../features/auth/authSlice";
 import Button from "react-bootstrap/Button";
+import { Container } from "react-bootstrap";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -53,22 +54,36 @@ const Login = () => {
     dispatch(login(userData));
   };
 
+  function registerClick() {
+    navigate("/register");
+  }
+
   return (
     <>
-      <section>
-        <h1>
+      {/* <section> */}
+      <Container>
+        <h3>
           <FaSignInAlt /> Login
-        </h1>
+        </h3>
         <p>
           Please log in to see your courses, or click "Register" to create a new
           account.
         </p>
-      </section>
+      </Container>
+      {/* </section> */}
 
-      <section>
-        <form onSubmit={onSubmit}>
+      {/* <section> */}
+      <Container>
+        {/* <form onSubmit={onSubmit}> */}
+        <Form onSubmit={onSubmit} className="text-center form-login">
+          <img
+            className="login-logo mb-3 mt-3"
+            src={require("../images/proRepSampleWix.jpeg")}
+            alt="ProRep Logo Icon"
+          />
           {/* <input */}
           <Form.Control
+            className="mb-3"
             type="email"
             id="email"
             name="email"
@@ -79,6 +94,7 @@ const Login = () => {
 
           {/* <input */}
           <Form.Control
+            className="mb-3"
             type="password"
             id="password"
             name="password"
@@ -87,12 +103,23 @@ const Login = () => {
             onChange={onChange}
           />
 
-          <Button>Submit</Button>
-          <button variant="primary" type="submit">
+          <Button type="submit" className="mb-3">
+            Login
+          </Button>
+          <p>
+            Not Registered? Click the Register button below to create your FREE
+            account.
+          </p>
+          <Button onClick={registerClick} className="mb-3">
+            Register
+          </Button>
+          {/* <button variant="primary" type="submit">
             Submit
-          </button>
-        </form>
-      </section>
+          </button> */}
+        </Form>
+        {/* </form> */}
+      </Container>
+      {/* </section> */}
     </>
   );
 };
