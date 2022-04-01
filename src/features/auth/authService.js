@@ -13,11 +13,15 @@ const API_URL =
 
 // Register user
 const register = async (userData) => {
-  const response = await axios.post(API_URL + "api/v1/register", userData, {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
-  });
+  const response = await axios.post(
+    API_URL + "api/v1/users/register",
+    userData,
+    {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    }
+  );
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
