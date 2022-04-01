@@ -7,6 +7,7 @@ const createCourse = async (courseData, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
+      "Access-Control-Allow-Origin": "*",
     },
   };
 
@@ -20,6 +21,7 @@ const getUserCourses = async (token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
+      "Access-Control-Allow-Origin": "*",
     },
   };
 
@@ -33,6 +35,7 @@ const getAllCourses = async (token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
+      "Access-Control-Allow-Origin": "*",
     },
   };
 
