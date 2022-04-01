@@ -13,7 +13,7 @@ const API_URL =
 
 // Register user
 const register = async (userData) => {
-  const response = await axios.post(API_URL + "register", userData, {
+  const response = await axios.post(API_URL + "/api/v1/register", userData, {
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
