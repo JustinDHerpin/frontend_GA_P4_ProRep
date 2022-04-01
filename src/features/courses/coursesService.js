@@ -1,7 +1,14 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/v1/courses/";
+// const API_URL = "http://localhost:5000/api/v1/courses/";
+// ------------------ new for deployed version ---------------
 
+const API_URL =
+  process.env.REACT_APP_ENV === "production"
+    ? "https://prorep-backend.herokuapp.com/api/v1/courses/"
+    : "http://localhost:5000/api/v1/courses/";
+
+// ------------------ ----------------- ---------------
 // Create new Course
 const createCourse = async (courseData, token) => {
   const config = {
