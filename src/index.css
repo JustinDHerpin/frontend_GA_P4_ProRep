@@ -13,9 +13,24 @@ body {
   /* background: red; */
 }
 
+/* NavBar */
+
+.navImage {
+  margin-right: 8px;
+}
+
+.nav-logout-button {
+  background-color: #031C32;
+  margin-left: 8px;
+}
+
 /* Login/Register forms */
 
 .login-header-container {
+  margin-top: 4rem;
+}
+
+.register-header-container{
   margin-top: 4rem;
 }
 
@@ -31,8 +46,13 @@ body {
 }
 
 .form-login {
-  margin: 7rem auto;
+  margin: 3rem auto;
   /* background-color: #0f43716a; */
+  max-width: 400px;
+}
+
+.form-register {
+  margin: 3rem auto;
   max-width: 400px;
 }
 
@@ -40,13 +60,30 @@ body {
   background-color: #031C32;
 }
 
-.navImage {
-  margin-right: 8px;
-}
+/* Dashboard */
 
-.nav-logout-button {
+.dashboard-main {
+  /* min-width: 100vw; */
+  min-height: 100vh;
   background-color: #031C32;
-  margin-left: 8px;
+}
+.dashboard-main-row {
+  /* min-width: 100vw; */
+  min-height: 100vh;
+}
+.dashboard-column-left {
+  min-height: 100vh;
+  background-color: #ffffff60;
+}
+.all-courses-button {
+  background-color: #ffffff60;
+  height: 5rem;
+  border-radius: 0;
+}
+.all-courses-button-right {
+  background-color: #031C32;
+  height: 5rem;
+  border-radius: 0;
 }
 
 

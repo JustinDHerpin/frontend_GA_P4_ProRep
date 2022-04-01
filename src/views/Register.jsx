@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
 import { register, reset } from "../features/auth/authSlice";
+import Button from "react-bootstrap/Button";
+import { Container, Form } from "react-bootstrap";
 // import { isFulfilled } from "@reduxjs/toolkit";
 
 function Register() {
@@ -60,56 +62,92 @@ function Register() {
     }
   };
 
+  function loginClick() {
+    navigate("/");
+  }
+
   return (
     <>
-      <section>
-        <h1>
-          <FaUser /> Register
-        </h1>
-        <p>Please create an account</p>
-      </section>
+      <Container>
+        <Container className="text-center register-header-container">
+          <h3>
+            <FaUser /> Register
+          </h3>
+          <p>
+            Please complete the form below and click 'Register' to create your
+            new account.
+          </p>
+        </Container>
 
-      <section>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={name}
-            placeholder="Please enter your name"
-            onChange={onChange}
-          />
+        <Container className="h-100 login-form-container">
+          {/* <form onSubmit={onSubmit}> */}
+          <Form onSubmit={onSubmit} className="text-center form-register">
+            <img
+              className="login-logo mb-4 mt-4"
+              src={require("../images/proRepSampleWix.jpeg")}
+              alt="ProRep Logo Icon"
+            />
 
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            placeholder="Please enter your email"
-            onChange={onChange}
-          />
+            <Form.Control
+              className="mb-3"
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              placeholder="Please enter your name"
+              onChange={onChange}
+            />
 
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            placeholder="Please enter a password"
-            onChange={onChange}
-          />
+            <Form.Control
+              className="mb-3"
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              placeholder="Please enter your email"
+              onChange={onChange}
+            />
 
-          <input
-            type="password"
-            id="verifyPassword"
-            name="verifyPassword"
-            value={verifyPassword}
-            placeholder="Please verify your password"
-            onChange={onChange}
-          />
+            <Form.Control
+              className="mb-3"
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              placeholder="Please enter a password"
+              onChange={onChange}
+            />
 
-          <button type="submit">Submit</button>
-        </form>
-      </section>
+            <Form.Control
+              className="mb-3"
+              type="password"
+              id="verifyPassword"
+              name="verifyPassword"
+              value={verifyPassword}
+              placeholder="Please verify your password"
+              onChange={onChange}
+            />
+
+            <div className="d-grid">
+              <Button type="submit" className="mb-3 login-button">
+                Register
+              </Button>
+
+              <p>
+                Already have an account? click the Login button below to sign
+                in.
+              </p>
+
+              <Button onClick={loginClick} className="mb-3 login-button">
+                Login
+              </Button>
+            </div>
+            {/* <button type="submit">Submit</button> */}
+          </Form>
+          {/* </form> */}
+        </Container>
+      </Container>
+      {/* </section> */}
     </>
   );
 }

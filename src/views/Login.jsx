@@ -54,6 +54,7 @@ const Login = () => {
     dispatch(login(userData));
   };
 
+  // Navigate for register button:
   function registerClick() {
     navigate("/register");
   }
