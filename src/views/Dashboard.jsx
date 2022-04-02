@@ -5,24 +5,43 @@ import {
   getUserCourses,
   getAllCourses,
 } from "../features/courses/coursesSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Col, Row, Nav, Navbar } from "react-bootstrap";
 import CourseCard from "../components/CourseCard";
+import { Outlet } from "react-router-dom";
 // import CourseForm from "../components/CourseForm";
 
 function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const courseToShow = false;
+  const [availCourse, setAvailCourse] = useState({
+    name: "",
+    email: "",
+    password: "",
+    verifyPassword: "",
+  });
 
   const { user } = useSelector((state) => state.auth);
   const { userCourses, courses, isError, isSuccess, message } = useSelector(
     (state) => state.courses
   );
 
-  function showAvailCourse() {}
+  // function getAvailCourse(e) {
+  //   // setAvailCourse((prevState) => ({
+  //   //   owner: user,
+
+  //   // }));
+  //   console.log("hello");
+  //   console.log(e.target.name);
+  // }
+
+  // function to retrieve course id from clicked nav item:
+  function pushAvailCourse(e) {
+    let id = e.target.attributes[0].nodeValue;
+  }
 
   useEffect(() => {
     if (isError) {
@@ -51,10 +70,7 @@ function Dashboard() {
             <Navbar.Brand>My Courses:</Navbar.Brand>
             {courses[0]?.map((course) => {
               return (
-                <Nav.Link
-                  className="navlink"
-                  href={`/dashboard/courses/${course._id}`}
-                >
+                <Nav.Link className="navlink" href={`/dashboard/${course._id}`}>
                   {course.name}
                 </Nav.Link>
               );
@@ -63,9 +79,13 @@ function Dashboard() {
             {courses[0]?.map((course) => {
               return (
                 <Nav.Link
-                  // onSelect={showCourse()}
+                  value={course._id}
+                  // onClick={() => }
+                  onClick={pushAvailCourse}
                   className="navlink"
-                  href={`/dashboard/courses/${course._id}`}
+                  // href={`/dashboard/course/${course._id}`}
+                  // href={`/dashboard/${course._id}`}
+                  // to={`/dashboard/${course._id}`}
                 >
                   {course.name}
                 </Nav.Link>
@@ -81,10 +101,11 @@ function Dashboard() {
             </Nav.Link>
           </Nav>
         </Col>
-
         <Col xs={9}>
-          {/* <CourseCard /> */}
+          <CourseCard />
+
           <Container className="p-0">
+            <Outlet />
             {/* <CourseCard /> */}
             {/* {courses[0]?.map((course) => {
               return (

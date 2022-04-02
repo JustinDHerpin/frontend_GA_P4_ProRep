@@ -15,6 +15,26 @@ const initialState = {
 };
 
 // Add a course to user's dashboard
+//state.courses.showAvailCourse
+export const getAvailCourse = createAsyncThunk(
+  "courses/addCourse",
+  async (courseData, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await coursesService.addCourse(courseData, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Add a course to user's dashboard
 export const addCourse = createAsyncThunk(
   "courses/addCourse",
   async (courseData, thunkAPI) => {
