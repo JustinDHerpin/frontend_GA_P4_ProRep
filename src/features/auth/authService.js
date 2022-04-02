@@ -6,22 +6,18 @@ import axios from "axios";
 
 const API_URL =
   process.env.REACT_APP_ENV === "production"
-    ? "https://prorep-backend.herokuapp.com/"
+    ? "https://prorep-backend.herokuapp.com/api/v1/users/"
     : "http://localhost:5000/api/v1/users/";
 
 // -------------------------------------end-------------------
 
 // Register user
 const register = async (userData) => {
-  const response = await axios.post(
-    API_URL + "api/v1/users/register",
-    userData,
-    {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    }
-  );
+  const response = await axios.post(API_URL + "register", userData, {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  });
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
@@ -32,7 +28,7 @@ const register = async (userData) => {
 
 // Login user
 const login = async (userData) => {
-  const response = await axios.post(API_URL + "api/v1/users/login", userData);
+  const response = await axios.post(API_URL + "login", userData);
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));

@@ -51,7 +51,7 @@ function NavBar() {
               </Nav>
               <Nav>
                 <Navbar.Text>
-                  <p>Signed in as: {user.name + ""}</p>
+                  <p className="p-0 m-0">Signed in as: {user.name + ""}</p>
                   {/* Signed in as: <a href="#login">{user.name}</a> */}
                 </Navbar.Text>
                 {/* <Nav.Link href="/" eventKey={2}>

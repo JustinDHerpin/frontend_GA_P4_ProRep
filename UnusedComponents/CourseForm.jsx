@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { createCourse, reset } from "../features/courses/coursesSlice";
+import { createCourse, reset } from "../src/features/courses/coursesSlice";
 
 function CourseForm() {
   // const [name, setName] = useState("");
