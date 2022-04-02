@@ -6,19 +6,23 @@ import {
   getAllCourses,
 } from "../features/courses/coursesSlice";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Col, Row, Nav, Navbar } from "react-bootstrap";
+import CourseCard from "../components/CourseCard";
 // import CourseForm from "../components/CourseForm";
 
 function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const courseToShow = false;
 
   const { user } = useSelector((state) => state.auth);
   const { userCourses, courses, isError, isSuccess, message } = useSelector(
     (state) => state.courses
   );
+
+  function showAvailCourse() {}
 
   useEffect(() => {
     if (isError) {
@@ -31,6 +35,8 @@ function Dashboard() {
     dispatch(getUserCourses());
     dispatch(getAllCourses());
   }, [user, navigate, dispatch, isError, message]);
+
+  useEffect(() => {});
 
   // if (isLoading) {
   //   return <Spinner />
@@ -45,7 +51,10 @@ function Dashboard() {
             <Navbar.Brand>My Courses:</Navbar.Brand>
             {courses[0]?.map((course) => {
               return (
-                <Nav.Link className="navlink" href={`/${course._id}`}>
+                <Nav.Link
+                  className="navlink"
+                  href={`/dashboard/courses/${course._id}`}
+                >
                   {course.name}
                 </Nav.Link>
               );
@@ -53,7 +62,11 @@ function Dashboard() {
             <Navbar.Brand>Course Catalog:</Navbar.Brand>
             {courses[0]?.map((course) => {
               return (
-                <Nav.Link className="navlink" href={`/${course._id}`}>
+                <Nav.Link
+                  // onSelect={showCourse()}
+                  className="navlink"
+                  href={`/dashboard/courses/${course._id}`}
+                >
                   {course.name}
                 </Nav.Link>
               );
@@ -70,8 +83,10 @@ function Dashboard() {
         </Col>
 
         <Col xs={9}>
+          {/* <CourseCard /> */}
           <Container className="p-0">
-            {courses[0]?.map((course) => {
+            {/* <CourseCard /> */}
+            {/* {courses[0]?.map((course) => {
               return (
                 <Row key={course._id}>
                   <Button
@@ -82,7 +97,7 @@ function Dashboard() {
                   </Button>
                 </Row>
               );
-            })}
+            })} */}
           </Container>
         </Col>
       </Row>
