@@ -4,43 +4,60 @@ import coursesService from "../features/courses/coursesService";
 import {
   getUserCourses,
   getAllCourses,
+  reset,
 } from "../features/courses/coursesSlice";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Col, Row, Nav, Navbar } from "react-bootstrap";
 import CourseCard from "../components/CourseCard";
-import { Outlet } from "react-router-dom";
+// import { Outlet } from "react-router-dom";
 // import CourseForm from "../components/CourseForm";
 
 function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [availCourse, setAvailCourse] = useState({
     name: "",
-    email: "",
+    emlai: "",
     password: "",
     verifyPassword: "",
   });
 
+  let clickedCourseID;
+  let clickedCourseName;
   const { user } = useSelector((state) => state.auth);
-  const { userCourses, courses, isError, isSuccess, message } = useSelector(
-    (state) => state.courses
-  );
+  const {
+    userCourses,
+    // showAvailCourse,
+    showUserCourse,
+    courses,
+    isError,
+    isSuccess,
+    message,
+  } = useSelector((state) => state.courses);
+  // let item = useSelector((state) => state.courses[0].filter(courses => ))
+  // let item = courses[0].filter(item => item._id ==))
+  console.log("userCourses: " + userCourses);
+  console.log("courses: " + courses[1]);
 
-  // function getAvailCourse(e) {
-  //   // setAvailCourse((prevState) => ({
-  //   //   owner: user,
+  function getAvailCourse(e) {
+    // console.log(e);
+    clickedCourseID = e.target.attributes[0].nodeValue;
+    clickedCourseName = e.target.attributes[1].nodeValue;
+    console.log(clickedCourseID);
+    console.log(clickedCourseName);
+    pushAvailCourse(clickedCourseID);
+  }
 
-  //   // }));
-  //   console.log("hello");
-  //   console.log(e.target.name);
-  // }
-
-  // function to retrieve course id from clicked nav item:
-  function pushAvailCourse(e) {
-    let id = e.target.attributes[0].nodeValue;
+  function pushAvailCourse(clickedCourseID) {
+    console.log(courses[1]);
+    let item = courses[0].filter((item) => item._id == clickedCourseID);
+    console.log(item);
+    // setAvailCourse();
+    console.log(clickedCourseID);
   }
 
   useEffect(() => {
@@ -51,18 +68,30 @@ function Dashboard() {
     if (!user) {
       navigate("/");
     }
+    dispatch(reset());
     dispatch(getUserCourses());
     dispatch(getAllCourses());
   }, [user, navigate, dispatch, isError, message]);
 
-  useEffect(() => {});
+  // useEffect(() => {
+  // if (isError) {
+  //   console.log(message);
+  // }
+
+  // if (!user) {
+  //   navigate("/");
+  // }
+
+  // pushAvailCourse();
+  // }, [user, isError, message, navigate, dispatch, , showAvailCourse, clickedCourseID]);
+  // }, [dispatch, showAvailCourse, clickedCourseID]);
+  // }, [dispatch, clickedCourseID]);
 
   // if (isLoading) {
   //   return <Spinner />
   // }
-  console.log(userCourses);
+
   return (
-    // <Container fluid className="dashboard-main">
     <Container fluid className="dashboard-main p=0">
       <Row className="dashboard-main-row">
         <Col className="dashboard-column-left">
@@ -80,8 +109,8 @@ function Dashboard() {
               return (
                 <Nav.Link
                   value={course._id}
-                  // onClick={() => }
-                  onClick={pushAvailCourse}
+                  name={course.name}
+                  onClick={getAvailCourse}
                   className="navlink"
                   // href={`/dashboard/course/${course._id}`}
                   // href={`/dashboard/${course._id}`}
@@ -91,22 +120,14 @@ function Dashboard() {
                 </Nav.Link>
               );
             })}
-
-            <Nav.Link className="navlink" href="/home">
-              Active
-            </Nav.Link>
-            <Nav.Link eventKey="link-1">Link</Nav.Link>
-            <Nav.Link eventKey="disabled" disabled>
-              Disabled
-            </Nav.Link>
           </Nav>
         </Col>
+
         <Col xs={9}>
           <CourseCard />
 
           <Container className="p-0">
-            <Outlet />
-            {/* <CourseCard /> */}
+            {/* <Outlet /> */}
             {/* {courses[0]?.map((course) => {
               return (
                 <Row key={course._id}>

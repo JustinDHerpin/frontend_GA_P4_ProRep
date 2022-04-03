@@ -6,7 +6,7 @@ const initialState = {
   //   user: null,
   userCourses: [],
   courses: [],
-  showAvailCourse: [],
+  // showAvailCourse: [],
   showUserCourse: [],
   isError: false,
   isSuccess: false,
