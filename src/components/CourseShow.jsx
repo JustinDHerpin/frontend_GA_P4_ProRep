@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
-function courseCard() {
+function CourseShow() {
   return (
     <>
-      <h2>courseCard</h2>
+      <h2>CourseShow</h2>
     </>
 
     //     <>
@@ -40,4 +40,4 @@ function courseCard() {
   );
 }
 
-export default courseCard;
+export default CourseShow;

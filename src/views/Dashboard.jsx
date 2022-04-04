@@ -1,6 +1,5 @@
 import React from "react";
-import coursesService from "../features/courses/coursesService";
-// import CoursesList from "../components/CoursesList";
+// import coursesService from "../features/courses/coursesService";
 import {
   getUserCourses,
   getAllCourses,
@@ -8,23 +7,17 @@ import {
 } from "../features/courses/coursesSlice";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-// import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Col, Row, Nav, Navbar } from "react-bootstrap";
-import CourseCard from "../components/CourseCard";
-// import { Outlet } from "react-router-dom";
-// import CourseForm from "../components/CourseForm";
+import CourseShow from "../components/CourseShow";
+import { render } from "@testing-library/react";
 
 function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [availCourse, setAvailCourse] = useState({
-    name: "",
-    emlai: "",
-    password: "",
-    verifyPassword: "",
-  });
+  const [availCourse, setAvailCourse] = useState({});
+  const [navItemClicked, setNavItemClicked] = useState(false);
 
   let clickedCourseID;
   let clickedCourseName;
@@ -32,32 +25,30 @@ function Dashboard() {
   const {
     userCourses,
     // showAvailCourse,
-    showUserCourse,
+    // showUserCourse,
     courses,
     isError,
     isSuccess,
     message,
   } = useSelector((state) => state.courses);
-  // let item = useSelector((state) => state.courses[0].filter(courses => ))
-  // let item = courses[0].filter(item => item._id ==))
-  console.log("userCourses: " + userCourses);
-  console.log("courses: " + courses[1]);
+
+  // console.log("userCourses: " + userCourses);
+  // console.log("courses: " + courses[1]);
 
   function getAvailCourse(e) {
-    // console.log(e);
     clickedCourseID = e.target.attributes[0].nodeValue;
     clickedCourseName = e.target.attributes[1].nodeValue;
-    console.log(clickedCourseID);
-    console.log(clickedCourseName);
     pushAvailCourse(clickedCourseID);
   }
 
   function pushAvailCourse(clickedCourseID) {
-    console.log(courses[1]);
-    let item = courses[0].filter((item) => item._id == clickedCourseID);
-    console.log(item);
-    // setAvailCourse();
-    console.log(clickedCourseID);
+    console.log(courses[0]);
+    let item = courses[0].filter((item) => item._id === clickedCourseID);
+
+    setAvailCourse(item);
+    setNavItemClicked(true);
+    console.log(navItemClicked);
+    // console.log(clickedCourseID);
   }
 
   useEffect(() => {
@@ -74,15 +65,8 @@ function Dashboard() {
   }, [user, navigate, dispatch, isError, message]);
 
   // useEffect(() => {
-  // if (isError) {
-  //   console.log(message);
-  // }
+  //  showAvailCourse(); // will be to send data and display on page here
 
-  // if (!user) {
-  //   navigate("/");
-  // }
-
-  // pushAvailCourse();
   // }, [user, isError, message, navigate, dispatch, , showAvailCourse, clickedCourseID]);
   // }, [dispatch, showAvailCourse, clickedCourseID]);
   // }, [dispatch, clickedCourseID]);
@@ -91,6 +75,8 @@ function Dashboard() {
   //   return <Spinner />
   // }
 
+  console.log(availCourse);
+  console.log(navItemClicked);
   return (
     <Container fluid className="dashboard-main p=0">
       <Row className="dashboard-main-row">
@@ -112,9 +98,6 @@ function Dashboard() {
                   name={course.name}
                   onClick={getAvailCourse}
                   className="navlink"
-                  // href={`/dashboard/course/${course._id}`}
-                  // href={`/dashboard/${course._id}`}
-                  // to={`/dashboard/${course._id}`}
                 >
                   {course.name}
                 </Nav.Link>
@@ -124,22 +107,15 @@ function Dashboard() {
         </Col>
 
         <Col xs={9}>
-          <CourseCard />
-
           <Container className="p-0">
-            {/* <Outlet /> */}
-            {/* {courses[0]?.map((course) => {
-              return (
-                <Row key={course._id}>
-                  <Button
-                    key={course.lessons.map}
-                    className="all-courses-button-right"
-                  >
-                    {course.name}
-                  </Button>
-                </Row>
-              );
-            })} */}
+            {navItemClicked ? <CourseShow course={availCourse} /> : ""}
+            {/* {availCourse !== {} && <CourseShow {...availCourse} />} */}
+
+            {/* {
+              if (availCourse !== {}) {
+                <CourseShow {...availCourse} />
+              }
+            } */}
           </Container>
         </Col>
       </Row>

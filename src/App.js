@@ -10,9 +10,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./views/Dashboard";
 import Login from "./views/Login";
 import Register from "./views/Register";
+import CourseShow from "./components/CourseShow";
 // import { Container } from "react-bootstrap";
 import NavBar from "./components/NavBar.jsx";
-import CourseCard from "./components/CourseCard";
 function App() {
   return (
     <>
@@ -23,7 +23,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="dashboard" element={<Dashboard />}>
-            <Route path=":id" element={<CourseCard />} />
+            <Route path=":id" element={<CourseShow />} />
             {/* <Route path="/dashboard/course/:id" element={<CourseCard />} /> */}
           </Route>
         </Routes>
