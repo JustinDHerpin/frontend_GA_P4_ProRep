@@ -1,51 +1,103 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Card, Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 // function CourseShow({ name, lessons }) {
 // const CourseShow = (props) => {
 function CourseShow(props) {
-  console.log(props);
-  let course = props;
-  console.log(course);
-  console.log(course[0].name);
+  // console.log(props);
+  // let course = props;
+  // console.log(course);
+  // console.log(course[0].name);
   // console.log(courseToMap);
+  let course = {
+    name: "HTML",
+
+    lessons: [
+      {
+        lessonName: "Intro to HTML",
+        lessonLink:
+          "https://git.generalassemb.ly/Flex-928/html-and-css/blob/master/readme.md",
+        labName: "HTML/CSS Lab",
+        labLink: "https://git.generalassemb.ly/Flex-928/fashion-blog",
+        homeworkName: "Haiku",
+        homeworkLink:
+          "https://git.generalassemb.ly/Flex-928/haiku/blob/master/README.md",
+        homeworkDue: "10/12/22",
+        recordingLink:
+          "https://generalassembly.zoom.us/rec/share/pMlBU_PMomveo47HA-WclLZHDCAYvSE3RhRvQP04zR1NjNAKE898v41Uyl-7WkYC.CiEOwVrTA8oO-oOA",
+        recordingPassword: "N.Ram7xE",
+      },
+    ],
+  };
+
   return (
     <>
-      <h2>CourseShowComponent</h2>
-      {/* <h2>{course[0].name}</h2> */}
-      {/* <p>{course[0].lessons}</p> */}
+      <Container fluid className="course-show-title">
+        <h4>Course:&nbsp;&nbsp;{course.name}</h4>
+        <Button>Add Course</Button>
+      </Container>
+
+      {course.lessons.map((lesson) => {
+        return (
+          <Container className="course-show-content hvr-grow">
+            <h5>Lesson:&nbsp;&nbsp;&nbsp;&nbsp;{lesson.lessonName}</h5>
+
+            <a
+              href={lesson.lessonLink}
+              alt={lesson.lessonName}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <p>
+                Go to Lesson Mark Down:&nbsp;&nbsp;&nbsp;&nbsp;
+                {lesson.lessonName}
+              </p>
+            </a>
+
+            <a
+              href={lesson.labLink}
+              alt={lesson.labName}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <p>
+                Download and Complete the lab(s): &nbsp;&nbsp;&nbsp;&nbsp;
+                {lesson.labName}
+              </p>
+            </a>
+
+            <a
+              href={lesson.homeworkLink}
+              alt={lesson.homeworkName}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <p>
+                Homework:&nbsp;&nbsp;&nbsp;&nbsp;{lesson.homeworkName}
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                due:&nbsp;&nbsp;&nbsp;&nbsp;{lesson.homeworkDue}
+              </p>
+            </a>
+
+            <a
+              href={lesson.recordingLink}
+              alt="Lesson Recording Link"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <p>
+                Click Here to Watch the Video &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp; Recording
+                Password:&nbsp;&nbsp;&nbsp;&nbsp;
+                {lesson.recordingPassword}
+              </p>
+            </a>
+          </Container>
+        );
+      })}
     </>
-
-    //     <>
-    //       { course[0]?.lesson.map}
-    //       <Container>
-
-    //       </Container>
-    //     </>
-
-    //     <>
-    //       <Card style={{ width: "18rem" }}>
-    //         <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-    //         <Card.Body>
-    //           <Card.Title>Card Title</Card.Title>
-    //           <Card.Text>
-    //             Some quick example text to build on the card title and make up the
-    //             bulk of the card's content.
-    //           </Card.Text>
-    //         </Card.Body>
-    //         <ListGroup className="list-group-flush">
-    //           <ListGroupItem>Cras justo odio</ListGroupItem>
-    //           <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-    //           <ListGroupItem>Vestibulum at eros</ListGroupItem>
-    //         </ListGroup>
-    //         <Card.Body>
-    //           <Card.Link href="#">Card Link</Card.Link>
-    //           <Card.Link href="#">Another Link</Card.Link>
-    //         </Card.Body>
-    //       </Card>
-    //     </>
   );
 }
 

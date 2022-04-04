@@ -72,18 +72,15 @@ const Login = () => {
             new account.
           </p>
         </Container>
-        {/* </section> */}
 
-        {/* <section> */}
         <Container className="h-100 login-form-container">
-          {/* <form onSubmit={onSubmit}> */}
           <Form onSubmit={onSubmit} className="text-center form-login">
             <img
               className="login-logo mb-4 mt-4"
               src={require("../images/proRepSampleWix.jpeg")}
               alt="ProRep Logo Icon"
             />
-            {/* <input */}
+
             <Form.Control
               className="mb-3"
               type="email"
@@ -94,7 +91,6 @@ const Login = () => {
               onChange={onChange}
             />
 
-            {/* <input */}
             <Form.Control
               className="mb-3"
               type="password"
@@ -117,14 +113,9 @@ const Login = () => {
                 Register
               </Button>
             </div>
-            {/* <button variant="primary" type="submit">
-              Submit
-            </button> */}
           </Form>
-          {/* </form> */}
         </Container>
       </Container>
-      {/* </section> */}
     </>
   );
 };

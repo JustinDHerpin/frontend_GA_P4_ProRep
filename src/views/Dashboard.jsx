@@ -108,6 +108,7 @@ function Dashboard() {
 
         <Col xs={9}>
           <Container className="p-0">
+            <CourseShow />
             {navItemClicked ? <CourseShow course={availCourse} /> : ""}
             {/* {availCourse !== {} && <CourseShow {...availCourse} />} */}
 
@@ -122,30 +123,5 @@ function Dashboard() {
     </Container>
   );
 }
-
-//
-//   <section>
-//         <h1>Welcome {user && user.name}</h1>
-//         <p>Course Dashboard</p>
-
-//         <div>
-//         {user.isAdmin && <CourseForm />}
-//         <CourseForm />
-//         <CoursesList />
-//         {user.isAdmin ? {<CourseForm />} : null}
-//          </div>
-//       </section> */
-//
-
-// if(userCourses[0]? !== [])
-//             {userCourses?.map((course) => {
-//               return (
-//                 <Button key={course._id} className="all-courses-button">
-//                   {course.name}
-//                 </Button>
-//               );
-//             })}
-//             else {<p>No Courses Added</p>}
-//
 
 export default Dashboard;
