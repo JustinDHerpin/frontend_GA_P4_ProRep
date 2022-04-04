@@ -108,7 +108,7 @@ function Dashboard() {
 
         <Col xs={9}>
           <Container className="p-0">
-            <CourseShow />
+            {/* <CourseShow /> */}
             {navItemClicked ? <CourseShow course={availCourse} /> : ""}
             {/* {availCourse !== {} && <CourseShow {...availCourse} />} */}
 

@@ -6,31 +6,33 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 // function CourseShow({ name, lessons }) {
 // const CourseShow = (props) => {
 function CourseShow(props) {
-  // console.log(props);
-  // let course = props;
-  // console.log(course);
+  console.log(props);
+  let { course } = props;
+  // console.log(course[0].name);
+  course = course[0];
+  // console.log(JSONcourse[0].name);
   // console.log(course[0].name);
   // console.log(courseToMap);
-  let course = {
-    name: "HTML",
+  // let course = {
+  //   name: "HTML",
 
-    lessons: [
-      {
-        lessonName: "Intro to HTML",
-        lessonLink:
-          "https://git.generalassemb.ly/Flex-928/html-and-css/blob/master/readme.md",
-        labName: "HTML/CSS Lab",
-        labLink: "https://git.generalassemb.ly/Flex-928/fashion-blog",
-        homeworkName: "Haiku",
-        homeworkLink:
-          "https://git.generalassemb.ly/Flex-928/haiku/blob/master/README.md",
-        homeworkDue: "10/12/22",
-        recordingLink:
-          "https://generalassembly.zoom.us/rec/share/pMlBU_PMomveo47HA-WclLZHDCAYvSE3RhRvQP04zR1NjNAKE898v41Uyl-7WkYC.CiEOwVrTA8oO-oOA",
-        recordingPassword: "N.Ram7xE",
-      },
-    ],
-  };
+  //   lessons: [
+  //     {
+  //       lessonName: "Intro to HTML",
+  //       lessonLink:
+  //         "https://git.generalassemb.ly/Flex-928/html-and-css/blob/master/readme.md",
+  //       labName: "HTML/CSS Lab",
+  //       labLink: "https://git.generalassemb.ly/Flex-928/fashion-blog",
+  //       homeworkName: "Haiku",
+  //       homeworkLink:
+  //         "https://git.generalassemb.ly/Flex-928/haiku/blob/master/README.md",
+  //       homeworkDue: "10/12/22",
+  //       recordingLink:
+  //         "https://generalassembly.zoom.us/rec/share/pMlBU_PMomveo47HA-WclLZHDCAYvSE3RhRvQP04zR1NjNAKE898v41Uyl-7WkYC.CiEOwVrTA8oO-oOA",
+  //       recordingPassword: "N.Ram7xE",
+  //     },
+  //   ],
+  // };
 
   return (
     <>
@@ -76,8 +78,8 @@ function CourseShow(props) {
             >
               <p>
                 Homework:&nbsp;&nbsp;&nbsp;&nbsp;{lesson.homeworkName}
-                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                due:&nbsp;&nbsp;&nbsp;&nbsp;{lesson.homeworkDue}
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Due
+                By:&nbsp;&nbsp;&nbsp;&nbsp;{lesson.homeworkDue}
               </p>
             </a>
 
