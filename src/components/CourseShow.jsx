@@ -3,10 +3,19 @@ import { useParams } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 
-function CourseShow() {
+// function CourseShow({ name, lessons }) {
+// const CourseShow = (props) => {
+function CourseShow(props) {
+  console.log(props);
+  let course = props;
+  console.log(course);
+  console.log(course[0].name);
+  // console.log(courseToMap);
   return (
     <>
-      <h2>CourseShow</h2>
+      <h2>CourseShowComponent</h2>
+      {/* <h2>{course[0].name}</h2> */}
+      {/* <p>{course[0].lessons}</p> */}
     </>
 
     //     <>
