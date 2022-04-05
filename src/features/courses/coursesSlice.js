@@ -58,23 +58,23 @@ export const addCourse = createAsyncThunk(
 );
 
 //  Create new Course
-export const createCourse = createAsyncThunk(
-  "courses/create",
-  async (courseData, thunkAPI) => {
-    try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await coursesService.createCourse(courseData, token);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
+// export const createCourse = createAsyncThunk(
+//   "courses/create",
+//   async (courseData, thunkAPI) => {
+//     try {
+//       const token = thunkAPI.getState().auth.user.token;
+//       return await coursesService.createCourse(courseData, token);
+//     } catch (error) {
+//       const message =
+//         (error.response &&
+//           error.response.data &&
+//           error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 
 // Get user courses
 export const getUserCourses = createAsyncThunk(
@@ -114,6 +114,47 @@ export const getAllCourses = createAsyncThunk(
   }
 );
 
+//  UPDATE a User Course Instance:
+export const updateUserCourse = createAsyncThunk(
+  "courses/updateUserCourse",
+  async (courseData, thunkAPI) => {
+    try {
+      console.log("addcourse firing from coursesSlice line 42");
+      // const { user } = useSelector((state) => state.auth);
+      const token = thunkAPI.getState().auth.user.token;
+      return await coursesService.addCourse(courseData, token);
+      // return await coursesService.addCourse(courseData, user, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+//  DELETE a User Course Instance:
+export const deleteUserCourse = createAsyncThunk(
+  "courses/deleteUserCourse",
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await coursesService.deleteUserCourse(id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const coursesSlice = createSlice({
   name: "courses",
   initialState,
@@ -122,19 +163,19 @@ export const coursesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createCourse.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(createCourse.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.courses.push(action.payload);
-      })
-      .addCase(createCourse.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-      })
+      // .addCase(createCourse.pending, (state) => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(createCourse.fulfilled, (state, action) => {
+      //   state.isLoading = false;
+      //   state.isSuccess = true;
+      //   state.courses.push(action.payload);
+      // })
+      // .addCase(createCourse.rejected, (state, action) => {
+      //   state.isLoading = false;
+      //   state.isError = true;
+      //   state.message = action.payload;
+      // })
       .addCase(getUserCourses.pending, (state) => {
         state.isLoading = true;
       })
@@ -170,6 +211,34 @@ export const coursesSlice = createSlice({
         state.userCourses.push(action.payload);
       })
       .addCase(addCourse.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(updateUserCourse.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUserCourse.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.userCourses.push(action.payload);
+      })
+      .addCase(updateUserCourse.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteUserCourse.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteUserCourse.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.userCourses = state.userCourses.filter(
+          (course) => course._id !== action.payload.id
+        );
+      })
+      .addCase(deleteUserCourse.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

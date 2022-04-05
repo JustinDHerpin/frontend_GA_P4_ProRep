@@ -109,7 +109,7 @@ body {
   height: 5rem;
   border-radius: 0;
 }
-/* CourseShow.jsx */
+/* CourseShow.jsx and UserCoureShow.jsx */
 .course-show-title {
   margin: 1rem 0px 3rem 0px;
   padding-left: 0;
@@ -143,6 +143,11 @@ body {
 }
 .course-show-content > a {
   text-decoration: none;
+}
+
+/* UserCourseShow.jsx only */
+.btn-hw-status {
+  margin: 0 0 1rem 1rem;
 }
 
 

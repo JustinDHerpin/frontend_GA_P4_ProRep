@@ -67,11 +67,26 @@ const getAllCourses = async (token) => {
   return response.data;
 };
 
+// DELETE User Course:
+const deleteUserCourse = async (courseID, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
+
+  const response = await axios.delete(API_URL + courseID, config);
+
+  return response.data;
+};
+
 const coursesService = {
   addCourse,
   createCourse,
   getUserCourses,
   getAllCourses,
+  deleteUserCourse,
 };
 
 export default coursesService;
