@@ -11,7 +11,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Container, Button, Col, Row, Nav, Navbar } from "react-bootstrap";
 import CourseShow from "../components/CourseShow";
 import UserCourseShow from "../components/UserCourseShow";
-import { render } from "@testing-library/react";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -65,8 +64,8 @@ function Dashboard() {
     let item = courses[0].filter((item) => item._id === clickedCourseID);
 
     setAvailCourse(item);
-    setUserItemClicked(false);
     setNavItemClicked(true);
+    setUserItemClicked(false);
     console.log(navItemClicked);
     // console.log(clickedCourseID);
   }
@@ -79,14 +78,15 @@ function Dashboard() {
     if (!user) {
       navigate("/");
     }
+
     dispatch(reset());
     dispatch(getUserCourses());
     dispatch(getAllCourses());
   }, [user, navigate, dispatch, isError, message]);
 
-  useEffect(() => {
-    dispatch(getUserCourses());
-  }, [userCourses, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getUserCourses());
+  // }, [userCourses, dispatch]);
   // useEffect(() => {
   //  showAvailCourse(); // will be to send data and display on page here
 

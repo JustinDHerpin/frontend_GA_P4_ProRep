@@ -13,31 +13,26 @@ function UserCourseShow(props) {
 
   const { user } = useSelector((state) => state.auth);
 
-  const {
-    userCourses,
-    // showAvailCourse,
-    // showUserCourse,
-    courses,
-    isError,
-    isSuccess,
-    message,
-  } = useSelector((state) => state.courses);
+  const { userCourses, courses, isError, isSuccess, message } = useSelector(
+    (state) => state.courses
+  );
   course = course[0];
   console.log(course);
 
-  //   function handleAddClick({ course }) {
-  //     console.log("addCourse clicked");
-  //     let courseData = course;
-  //     console.log(courseData);
-  //     dispatch(addCourse(courseData));
-  //     // addCourse(courseData, user);
-  //   }
+  function updateHomeworkDone(courseID, lessonID) {
+    console.log(courseID);
+    console.log(lessonID);
+
+    // let course = courses[0].filter((item) => item._id === id);
+    // let courseData = userCourses{ item };
+    // console.log(courseData.lessons);
+    //   if (userCourses.id)
+  }
 
   return (
     <>
       <Container fluid className="course-show-title">
         <h4>Course:&nbsp;&nbsp;{course.name}</h4>
-        {/* <Button onClick={() => handleAddClick({ course })}> */}
         <Button onClick={() => dispatch(deleteUserCourse(course._id))}>
           Delete Course
         </Button>
@@ -90,6 +85,7 @@ function UserCourseShow(props) {
                 className="btn-hw-status"
                 variant="danger"
                 // onClick={() => dispatch(updateUserCourse(course._id))}
+                onClick={() => updateHomeworkDone(course._id, lesson._id)}
               >
                 Incomplete
               </Button>

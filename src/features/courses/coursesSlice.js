@@ -123,7 +123,6 @@ export const updateUserCourse = createAsyncThunk(
       // const { user } = useSelector((state) => state.auth);
       const token = thunkAPI.getState().auth.user.token;
       return await coursesService.addCourse(courseData, token);
-      // return await coursesService.addCourse(courseData, user, token);
     } catch (error) {
       const message =
         (error.response &&

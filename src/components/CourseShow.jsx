@@ -8,26 +8,15 @@ function CourseShow(props) {
   let { course } = props;
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const {
-    userCourses,
-    // showAvailCourse,
-    // showUserCourse,
-    courses,
-    isError,
-    isSuccess,
-    message,
-  } = useSelector((state) => state.courses);
-  // console.log(course[0].name);
+  const { userCourses, courses, isError, isSuccess, message } = useSelector(
+    (state) => state.courses
+  );
   course = course[0];
-  // console.log(JSONcourse[0].name);
-  // console.log(course[0].name);
-  // console.log(courseToMap);
+
   function handleAddClick({ course }) {
     console.log("addCourse clicked");
     let courseData = course;
-    console.log(courseData);
     dispatch(addCourse(courseData));
-    // addCourse(courseData, user);
   }
 
   return (
