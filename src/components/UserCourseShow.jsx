@@ -1,10 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
-import {
-  deleteCourse,
-  deleteUserCourse,
-} from "../features/courses/coursesSlice";
+import { deleteUserCourse } from "../features/courses/coursesSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 function UserCourseShow(props) {
