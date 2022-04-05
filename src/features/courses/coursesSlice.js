@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import coursesService from "./coursesService";
+import { useSelector } from "react-redux";
 // const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
@@ -14,33 +15,36 @@ const initialState = {
   message: "",
 };
 
-// Add a course to user's dashboard
 //state.courses.showAvailCourse
-export const getAvailCourse = createAsyncThunk(
-  "courses/addCourse",
-  async (courseData, thunkAPI) => {
-    try {
-      const token = thunkAPI.getState().auth.user.token;
-      return await coursesService.addCourse(courseData, token);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
+// export const getAvailCourse = createAsyncThunk(
+//   "courses/getAvailCourse",
+//   async (courseData, thunkAPI) => {
+//     try {
+//       const token = thunkAPI.getState().auth.user.token;
+//       return await coursesService.addCourse(courseData, token);
+//     } catch (error) {
+//       const message =
+//         (error.response &&
+//           error.response.data &&
+//           error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 
 // Add a course to user's dashboard
 export const addCourse = createAsyncThunk(
   "courses/addCourse",
   async (courseData, thunkAPI) => {
+    console.log("line 41 from coursesSlice");
     try {
+      console.log("addcourse firing from coursesSlice line 42");
+      // const { user } = useSelector((state) => state.auth);
       const token = thunkAPI.getState().auth.user.token;
       return await coursesService.addCourse(courseData, token);
+      // return await coursesService.addCourse(courseData, user, token);
     } catch (error) {
       const message =
         (error.response &&

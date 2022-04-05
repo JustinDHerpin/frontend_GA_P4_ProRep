@@ -1,44 +1,40 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
-import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { addCourse } from "../features/courses/coursesSlice";
+import { useSelector, useDispatch } from "react-redux";
 
-// function CourseShow({ name, lessons }) {
-// const CourseShow = (props) => {
 function CourseShow(props) {
-  console.log(props);
   let { course } = props;
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const {
+    userCourses,
+    // showAvailCourse,
+    // showUserCourse,
+    courses,
+    isError,
+    isSuccess,
+    message,
+  } = useSelector((state) => state.courses);
   // console.log(course[0].name);
   course = course[0];
   // console.log(JSONcourse[0].name);
   // console.log(course[0].name);
   // console.log(courseToMap);
-  // let course = {
-  //   name: "HTML",
-
-  //   lessons: [
-  //     {
-  //       lessonName: "Intro to HTML",
-  //       lessonLink:
-  //         "https://git.generalassemb.ly/Flex-928/html-and-css/blob/master/readme.md",
-  //       labName: "HTML/CSS Lab",
-  //       labLink: "https://git.generalassemb.ly/Flex-928/fashion-blog",
-  //       homeworkName: "Haiku",
-  //       homeworkLink:
-  //         "https://git.generalassemb.ly/Flex-928/haiku/blob/master/README.md",
-  //       homeworkDue: "10/12/22",
-  //       recordingLink:
-  //         "https://generalassembly.zoom.us/rec/share/pMlBU_PMomveo47HA-WclLZHDCAYvSE3RhRvQP04zR1NjNAKE898v41Uyl-7WkYC.CiEOwVrTA8oO-oOA",
-  //       recordingPassword: "N.Ram7xE",
-  //     },
-  //   ],
-  // };
+  function handleAddClick({ course }) {
+    console.log("addCourse clicked");
+    let courseData = course;
+    console.log(courseData);
+    dispatch(addCourse(courseData));
+    // addCourse(courseData, user);
+  }
 
   return (
     <>
       <Container fluid className="course-show-title">
         <h4>Course:&nbsp;&nbsp;{course.name}</h4>
-        <Button>Add Course</Button>
+        <Button onClick={() => handleAddClick({ course })}>Add Course</Button>
       </Container>
 
       {course.lessons.map((lesson) => {

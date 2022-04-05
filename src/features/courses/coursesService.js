@@ -18,7 +18,23 @@ const createCourse = async (courseData, token) => {
     },
   };
 
+  const response = await axios.post(API_URL + "all", courseData, config);
+
+  return response.data;
+};
+
+// const addCourse = async (courseData, user, token) => {
+const addCourse = async (courseData, token) => {
+  console.log("addCourse from coursesService line 28 set off");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
+
   const response = await axios.post(API_URL, courseData, config);
+  // const response = await axios.post(API_URL, courseData, user, config);
 
   return response.data;
 };
@@ -52,6 +68,7 @@ const getAllCourses = async (token) => {
 };
 
 const coursesService = {
+  addCourse,
   createCourse,
   getUserCourses,
   getAllCourses,

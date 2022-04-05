@@ -18,9 +18,12 @@ function Dashboard() {
 
   const [availCourse, setAvailCourse] = useState({});
   const [navItemClicked, setNavItemClicked] = useState(false);
+  const [userItemClicked, setUserItemClicked] = useState(false);
 
   let clickedCourseID;
   let clickedCourseName;
+  let clickedCourseToAddID;
+
   const { user } = useSelector((state) => state.auth);
   const {
     userCourses,
@@ -34,6 +37,13 @@ function Dashboard() {
 
   // console.log("userCourses: " + userCourses);
   // console.log("courses: " + courses[1]);
+
+  // function getAddedCourse(e) {
+  //   clickedCourseToAddID = e.target.attributes[0].nodeValue;
+  //   console.log(clickedCourseToAddID);
+  //   // clickedCourseName = e.target.attributes[1].nodeValue;
+  //   // pushAvailCourse(clickedCourseID);
+  // }
 
   function getAvailCourse(e) {
     clickedCourseID = e.target.attributes[0].nodeValue;
@@ -83,9 +93,16 @@ function Dashboard() {
         <Col className="dashboard-column-left">
           <Nav defaultActiveKey="/home" className="flex-sm-column">
             <Navbar.Brand>My Courses:</Navbar.Brand>
-            {courses[0]?.map((course) => {
+            {userCourses[0]?.map((course) => {
               return (
-                <Nav.Link className="navlink" href={`/dashboard/${course._id}`}>
+                // <Nav.Link className="navlink" href={`/dashboard/${course._id}`}>
+                <Nav.Link
+                  value={course._id}
+                  name={course.name}
+                  onClick={getAvailCourse}
+                  className="navlink"
+                  // href={`/dashboard/${course._id}`}
+                >
                   {course.name}
                 </Nav.Link>
               );
@@ -108,8 +125,8 @@ function Dashboard() {
 
         <Col xs={9}>
           <Container className="p-0">
-            {/* <CourseShow /> */}
             {navItemClicked ? <CourseShow course={availCourse} /> : ""}
+            {/* {userItemClicked ? <CourseShow course={userCourse} /> : ""} */}
             {/* {availCourse !== {} && <CourseShow {...availCourse} />} */}
 
             {/* {
