@@ -18,7 +18,7 @@ const createCourse = async (courseData, token) => {
     },
   };
 
-  const response = await axios.post(API_URL + "all", courseData, config);
+  const response = await axios.post(API_URL, courseData, config);
 
   return response.data;
 };
