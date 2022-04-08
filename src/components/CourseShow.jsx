@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
-import { addCourse } from "../features/courses/coursesSlice";
+import { addCourse, getUserCourses } from "../features/courses/coursesSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 function CourseShow(props) {
@@ -17,6 +17,7 @@ function CourseShow(props) {
     console.log("addCourse clicked");
     let courseData = course;
     dispatch(addCourse(courseData));
+    dispatch(getUserCourses());
   }
 
   return (

@@ -4,10 +4,8 @@ import { useSelector } from "react-redux";
 // const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
-  //   user: null,
   userCourses: [],
   courses: [],
-  // showAvailCourse: [],
   showUserCourse: [],
   isError: false,
   isSuccess: false,
@@ -119,10 +117,10 @@ export const updateUserCourse = createAsyncThunk(
   "courses/updateUserCourse",
   async (courseData, thunkAPI) => {
     try {
-      console.log("addcourse firing from coursesSlice line 42");
+      console.log("addcourse firing from coursesSlic../e line 120");
       // const { user } = useSelector((state) => state.auth);
       const token = thunkAPI.getState().auth.user.token;
-      return await coursesService.addCourse(courseData, token);
+      return await coursesService.updateUserCourse(courseData, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -221,6 +219,7 @@ export const coursesSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.userCourses.push(action.payload);
+        // state.userCourses = action.payload;
       })
       .addCase(updateUserCourse.rejected, (state, action) => {
         state.isLoading = false;

@@ -17,8 +17,8 @@ function Dashboard() {
   const navigate = useNavigate();
 
   const [availCourse, setAvailCourse] = useState({});
-  const [userCourse, setUserCourse] = useState({});
   const [navItemClicked, setNavItemClicked] = useState(false);
+  const [userCourse, setUserCourse] = useState({});
   const [userItemClicked, setUserItemClicked] = useState(false);
 
   let clickedCourseID;
@@ -29,6 +29,7 @@ function Dashboard() {
   const { userCourses, courses, isError, isSuccess, message } = useSelector(
     (state) => state.courses
   );
+
   // function getAddedCourse(e) {
   //   clickedCourseToAddID = e.target.attributes[0].nodeValue;
   //   console.log(clickedCourseToAddID);
@@ -39,18 +40,21 @@ function Dashboard() {
   function getUserCourse(e) {
     clickedCourseID = e.target.attributes[0].nodeValue;
     clickedCourseName = e.target.attributes[1].nodeValue;
+    console.log(clickedCourseID);
     pushUserCourse(clickedCourseID);
   }
 
   function pushUserCourse(clickedCourseID) {
-    console.log(courses[0]);
-    let item = courses[0].filter((item) => item._id === clickedCourseID);
-
+    // console.log(courses[0]);
+    console.log(userCourses[0]);
+    let item = userCourses[0].filter((item) => item._id === clickedCourseID);
+    // let item = userCourses[0].find((item) => item._id === clickedCourseID);
+    console.log(item);
     setUserCourse(item);
     setNavItemClicked(false);
     setUserItemClicked(true);
     console.log(userItemClicked);
-    // console.log(clickedCourseID);
+    console.log(clickedCourseID);
   }
 
   function getAvailCourse(e) {
@@ -83,25 +87,6 @@ function Dashboard() {
     dispatch(getUserCourses());
     dispatch(getAllCourses());
   }, [user, navigate, dispatch, isError, message]);
-
-  // useEffect(() => {
-  //   dispatch(getUserCourses());
-  // }, [userCourses, dispatch]);
-  // useEffect(() => {
-  //  showAvailCourse(); // will be to send data and display on page here
-
-  // }, [user, isError, message, navigate, dispatch, , showAvailCourse, clickedCourseID]);
-  // }, [dispatch, showAvailCourse, clickedCourseID]);
-  // }, [dispatch, clickedCourseID]);
-
-  // if (isLoading) {
-  //   return <Spinner />
-  // }
-
-  console.log(availCourse);
-  console.log(navItemClicked);
-  console.log(userCourse);
-  console.log(userItemClicked);
 
   return (
     <Container fluid className="dashboard-main p=0">
@@ -142,7 +127,14 @@ function Dashboard() {
         <Col xs={9}>
           <Container className="p-0">
             {navItemClicked ? <CourseShow course={availCourse} /> : ""}
-            {userItemClicked ? <UserCourseShow course={userCourse} /> : ""}
+            {userItemClicked ? (
+              <UserCourseShow
+                course={userCourse}
+                setUserCourse={setUserCourse}
+              />
+            ) : (
+              ""
+            )}
             {/* {availCourse !== {} && <CourseShow {...availCourse} />} */}
 
             {/* {

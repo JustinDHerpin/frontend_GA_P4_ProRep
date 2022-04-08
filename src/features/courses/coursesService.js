@@ -23,25 +23,24 @@ const createCourse = async (courseData, token) => {
   return response.data;
 };
 
-// const updateUserCourse = async (courseData, user, token) => {
-// const updateUserCourse = async (courseData, token) => {
-//   console.log("updateUserCourse from coursesService line 28 set off");
-//   const config = {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//       "Access-Control-Allow-Origin": "*",
-//     },
-//   };
+const updateUserCourse = async (courseData, token) => {
+  console.log("updateUserCourse from coursesService line 28 set off");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Access-Control-Allow-Origin": "*",
+    },
+  };
 
-//   const response = await axios.put(
-//     API_URL + courseData._id,
-//     courseData,
-//     config
-//   );
-//   // const response = await axios.post(API_URL, courseData, user, config);
-
-//   return response.data;
-// };
+  const response = await axios.put(
+    API_URL + courseData._id,
+    courseData,
+    config
+  );
+  // const response = await axios.post(API_URL, courseData, user, config);
+  console.log(response.data);
+  return response.data;
+};
 
 // const addCourse = async (courseData, user, token) => {
 const addCourse = async (courseData, token) => {
@@ -103,6 +102,7 @@ const deleteUserCourse = async (courseID, token) => {
 
 const coursesService = {
   addCourse,
+  updateUserCourse,
   createCourse,
   getUserCourses,
   getAllCourses,
