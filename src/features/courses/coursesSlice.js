@@ -205,7 +205,8 @@ export const coursesSlice = createSlice({
       .addCase(addCourse.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.userCourses.push(action.payload);
+        state.userCourses = [action.payload];
+        // state.userCourses.push(action.payload);
       })
       .addCase(addCourse.rejected, (state, action) => {
         state.isLoading = false;

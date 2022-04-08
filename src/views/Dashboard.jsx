@@ -74,6 +74,11 @@ function Dashboard() {
     // console.log(clickedCourseID);
   }
 
+  let refresh = () => {
+    dispatch(getUserCourses());
+    // dispatch(getAllCourses());
+  };
+
   useEffect(() => {
     if (isError) {
       console.log(message);
@@ -126,7 +131,11 @@ function Dashboard() {
 
         <Col xs={9}>
           <Container className="p-0">
-            {navItemClicked ? <CourseShow course={availCourse} /> : ""}
+            {navItemClicked ? (
+              <CourseShow course={availCourse} refresh={refresh} />
+            ) : (
+              ""
+            )}
             {userItemClicked ? (
               <UserCourseShow
                 course={userCourse}

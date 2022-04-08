@@ -5,7 +5,7 @@ import { addCourse, getUserCourses } from "../features/courses/coursesSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 function CourseShow(props) {
-  let { course } = props;
+  let { course, refresh } = props;
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { userCourses, courses, isError, isSuccess, message } = useSelector(
@@ -17,7 +17,8 @@ function CourseShow(props) {
     console.log("addCourse clicked");
     let courseData = course;
     dispatch(addCourse(courseData));
-    dispatch(getUserCourses());
+    // dispatch(getUserCourses())
+    refresh();
   }
 
   return (

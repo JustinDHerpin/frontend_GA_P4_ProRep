@@ -44,7 +44,7 @@ const updateUserCourse = async (courseData, token) => {
 
 // const addCourse = async (courseData, user, token) => {
 const addCourse = async (courseData, token) => {
-  console.log("addCourse from coursesService line 28 set off");
+  console.log("addCourse from coursesService line 47 set off");
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ const addCourse = async (courseData, token) => {
 
   const response = await axios.post(API_URL, courseData, config);
   // const response = await axios.post(API_URL, courseData, user, config);
-
+  console.log(response.data);
   return response.data;
 };
 
